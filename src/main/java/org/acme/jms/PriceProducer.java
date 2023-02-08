@@ -26,6 +26,9 @@ public class PriceProducer implements Runnable {
     private final Random random = new Random();
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
+    protected static final String TOPIC = "oocpa-new-application";
+    
+
     void onStart(@Observes StartupEvent ev) {
         scheduler.scheduleWithFixedDelay(this, 0L, 5L, TimeUnit.SECONDS);
     }
@@ -37,7 +40,7 @@ public class PriceProducer implements Runnable {
     @Override
     public void run() {
         try (JMSContext context = connectionFactory.createContext(JMSContext.AUTO_ACKNOWLEDGE)) {
-            context.createProducer().send(context.createQueue("prices"), Integer.toString(random.nextInt(100)));
+            context.createProducer().send(context.createTopic(PriceProducer.TOPIC), "This is a new message " + Integer.toString(random.nextInt(100)));
         }
     }
 }
