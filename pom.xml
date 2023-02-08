@@ -71,6 +71,14 @@
             <artifactId>artemis-server</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-kubernetes</artifactId>
+          </dependency>
+          <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-s2i</artifactId>
+          </dependency>        
     </dependencies>
     <build>
         <plugins>
